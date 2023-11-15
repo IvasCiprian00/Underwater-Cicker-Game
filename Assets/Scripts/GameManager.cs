@@ -7,17 +7,19 @@ public class GameManager : MonoBehaviour
 {
     public GameObject[] fish;
 
-    public int levelNumber;
+    [Header("Upgrade Info")]
+    public float damageValue;
+    public float fireRateUpgrade;
 
-    [Header("Wave Settings")]
-    public int numberOfFish;
+    [Header("Level Settings")]
+    public int levelNumber;
     public int waveNumber;
+    public int numberOfFish;
     public GameObject[] fishList;
 
 
     public void Start()
     {
-        waveNumber = 1;
         StartCoroutine(SpawnWave());
     }
 

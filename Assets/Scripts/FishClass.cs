@@ -70,13 +70,9 @@ public class FishClass : MonoBehaviour
         {
             BasicBullet bullet = collision.GetComponent<BasicBullet>();
 
-            TakeDamage(bullet.GetDamage());
+            TakeDamage(bullet.GetDamageMultiplier() * gameManager.damageValue);
             Destroy(collision.gameObject);
         }
     }
 
-    private void Awake()
-    {
-        gameManager = GameObject.Find("Game_Manager").GetComponent<GameManager>();
-    }
 }

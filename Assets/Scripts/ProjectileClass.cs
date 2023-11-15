@@ -1,21 +1,30 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ProjectileClass : MonoBehaviour
 {
+    public GameManager gameManager;
+
+    [Header("Weapon Attributes")]
     public float bulletSpeed;
+    public float damageMultiplier;
+    public float fireRateMultiplier;
 
-    public float bulletDamage;
-
-    public void SetDamage(float damage)
+    public void SetDamageMultiplier(float damage)
     {
-        bulletDamage = damage;
+        damageMultiplier = damage;
     }
 
-    public float GetDamage()
+    public float GetDamageMultiplier()
     {
-        return bulletDamage;
+        return damageMultiplier;
+    }
+
+    public void SetFireRateMultiplier(float fireRate)
+    {
+        fireRateMultiplier = fireRate;
     }
 
     public void SetSpeed(float speed)

@@ -6,7 +6,9 @@ public class BasicBullet : ProjectileClass
 {
     private void Awake()
     {
-        SetDamage(1);
+        gameManager = GameObject.Find("Game_Manager").GetComponent<GameManager>();
+        SetDamageMultiplier(1f);
+        SetFireRateMultiplier(1f);
         SetSpeed(10f);
     }
 
