@@ -4,28 +4,28 @@ using UnityEngine;
 
 public class ProjectileClass : MonoBehaviour
 {
-    public float baseBulletSpeed;
+    public float bulletSpeed;
 
-    public float baseBulletDamage;
+    public float bulletDamage;
 
     public void SetDamage(float damage)
     {
-        baseBulletDamage = damage;
+        bulletDamage = damage;
     }
 
     public float GetDamage()
     {
-        return baseBulletDamage;
+        return bulletDamage;
     }
 
     public void SetSpeed(float speed)
     {
-        baseBulletSpeed = speed;
+        bulletSpeed = speed;
     }
 
     public void Movement()
     {
-        transform.Translate(Vector3.down * baseBulletSpeed * Time.deltaTime);
+        transform.Translate(Vector3.down * bulletSpeed * Time.deltaTime);
     }
 
     public void CheckOffscreen()

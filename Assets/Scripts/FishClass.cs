@@ -10,9 +10,9 @@ public class FishClass : MonoBehaviour
     private float scaleValue = 1.15f;
 
     [Header("Fish Attributes")]
-    public float baseSpeed;
-    public float baseDamage;
-    public float baseHp;
+    public float speed;
+    public float damage;
+    public float hp;
 
     /*public FishClass(float scaleValue, float speed, float damage, float hp)
     {
@@ -33,30 +33,30 @@ public class FishClass : MonoBehaviour
 
     public void SetSpeed(float speed)
     {
-        baseSpeed = speed;
+        this.speed = speed;
     }
 
     public void SetDamage(float damage)
     {
-        baseDamage = damage;
+        this.damage = damage;
     }
 
     public float GetHP()
     {
-        return baseHp;
+        return this.hp;
     }
     public void SetHP(float hp)
     {
-        baseHp = hp;
+        this.hp = hp;
     }
 
     public void TakeDamage(float damage)
     {
-        baseHp -= damage;
+        this.hp -= damage;
     }
 
     public void Movement() { 
-        transform.Translate(Vector3.right * baseSpeed * Time.deltaTime);
+        transform.Translate(Vector3.right * this.speed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
