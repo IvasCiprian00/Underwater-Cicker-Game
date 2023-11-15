@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
         {
             levelNumber++;
             waveNumber = 1;
+            StartCoroutine(SpawnWave());
             return;
         }
 
