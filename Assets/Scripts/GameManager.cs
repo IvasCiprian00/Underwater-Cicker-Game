@@ -8,8 +8,9 @@ public class GameManager : MonoBehaviour
     public GameObject[] fish;
 
     [Header("Upgrade Info")]
-    public float damageValue;
-    public float fireRate;
+    public float damageValue;// damage formula : damageValue * damageMultiplier
+    public float fireRate;//fire rate formula : baseFireRate - fireRate * fireRateMultiplier
+    
 
     [Header("Level Settings")]
     public int levelNumber;
