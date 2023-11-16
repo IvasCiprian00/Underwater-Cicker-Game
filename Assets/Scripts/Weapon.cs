@@ -11,6 +11,7 @@ public class Weapon : MonoBehaviour
 
     [Header("Weapon Settings")]
     public GameObject projectile;
+    public float fireRate;
     public float baseFireRate;
     public float fireRateMultiplier;
     public float maxFireRate;
@@ -22,6 +23,12 @@ public class Weapon : MonoBehaviour
     public float flipImage;
 
     private float _timer;
+
+    public void Awake()
+    {
+        fireRate = baseFireRate;
+        gameManager = GameObject.Find("Game_Manager").GetComponent<GameManager>();
+    }
 
     public void Update()
     {
@@ -37,11 +44,21 @@ public class Weapon : MonoBehaviour
             CalculateAngle();
         }
 
-        if (_timer > baseFireRate && target != null)
+        CalculateFireRate();
+
+        if (_timer > fireRate && target != null)
         {
             _timer = 0f;
 
             Instantiate(projectile, transform.position, Quaternion.Euler(0, flipImage, angle));
+        }
+    }
+
+    private void CalculateFireRate()
+    {
+        if(fireRate > maxFireRate)
+        {
+            fireRate = baseFireRate - fireRateMultiplier * gameManager.fireRate;
         }
     }
 
