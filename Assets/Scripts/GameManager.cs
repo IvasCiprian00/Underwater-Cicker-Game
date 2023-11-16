@@ -6,6 +6,8 @@ using UnityEngine.UIElements;
 public class GameManager : MonoBehaviour
 {
     public GameObject[] fish;
+    public float shipHp;
+    public float shipMaxHp;
 
     [Header("Upgrade Info")]
     public float damageValue;// damage formula : damageValue * damageMultiplier
@@ -19,8 +21,9 @@ public class GameManager : MonoBehaviour
     public GameObject[] fishList;
 
 
-    public void Start()
+    public void Awake()
     {
+        shipHp = shipMaxHp;
         StartCoroutine(SpawnWave());
     }
 
@@ -52,5 +55,10 @@ public class GameManager : MonoBehaviour
 
         waveNumber++;
         StartCoroutine(SpawnWave());
+    }
+
+    public void DamageShip(float damage)
+    {
+        shipHp -= damage;
     }
 }

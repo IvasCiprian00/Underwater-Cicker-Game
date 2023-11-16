@@ -56,10 +56,7 @@ public class Weapon : MonoBehaviour
 
     private void CalculateFireRate()
     {
-        if(fireRate > maxFireRate)
-        {
-            fireRate = baseFireRate - fireRateMultiplier * gameManager.fireRate;
-        }
+        fireRate = Mathf.Clamp(baseFireRate - fireRateMultiplier * gameManager.fireRate, maxFireRate, baseFireRate);
     }
 
     private void CalculateAngle()

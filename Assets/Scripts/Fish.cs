@@ -48,6 +48,7 @@ public class Fish : MonoBehaviour
         if (collision.tag == "Boat")
         {
             Destroy(gameObject);
+            gameManager.DamageShip(damage);
         }
     }
 

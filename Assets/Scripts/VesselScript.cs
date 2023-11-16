@@ -8,5 +8,5 @@ public class VesselScript : MonoBehaviour
     public GameManager gameManager;
 
     public GameObject[] weapons = new GameObject[4];
-    public float hp;
+
 }
