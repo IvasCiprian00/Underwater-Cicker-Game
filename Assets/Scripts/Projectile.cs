@@ -3,14 +3,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileClass : MonoBehaviour
+public class Projectile : MonoBehaviour
 {
     public GameManager gameManager;
+    public Fish fish;
 
     [Header("Weapon Attributes")]
     public float bulletSpeed;
     public float damageMultiplier;
     public float fireRateMultiplier;
+
+    public void Movement()
+    {
+        transform.Translate(Vector3.down * bulletSpeed * Time.deltaTime);
+    }
+
+    public void CheckOffscreen()
+    {
+        if (transform.position.y < -7f)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    //  Basic class methods
 
     public void SetDamageMultiplier(float damage)
     {
@@ -32,16 +48,4 @@ public class ProjectileClass : MonoBehaviour
         bulletSpeed = speed;
     }
 
-    public void Movement()
-    {
-        transform.Translate(Vector3.down * bulletSpeed * Time.deltaTime);
-    }
-
-    public void CheckOffscreen()
-    {
-        if(transform.position.y < -7f)
-        {
-            Destroy(gameObject);
-        }
-    }
 }

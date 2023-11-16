@@ -13,7 +13,9 @@ public class UIManager: MonoBehaviour
 
     [Header("Upgrades")]
     public TextMeshProUGUI damageUpgrade;
-    public float upgradeScaleValue;
+    public TextMeshProUGUI fireRateUpgrade;
+    public float damageScaleValue;
+    public float fireRateScaleValue;
 
     public void Update()
     {
@@ -21,16 +23,22 @@ public class UIManager: MonoBehaviour
         wave.text = "Wave " + gameManager.waveNumber + "/4";
 
         damageUpgrade.text = "Damage\n +" + CalculateDamageDifference();
+        fireRateUpgrade.text = "Fire Rate\n +" + fireRateScaleValue;
     }
 
     public void UpgradeDamage()
     {
-        gameManager.damageValue *= upgradeScaleValue;
+        gameManager.damageValue *= damageScaleValue;
+    }
+
+    public void UpgradeFireRate()
+    {
+        gameManager.fireRate += fireRateScaleValue;
     }
 
     public float CalculateDamageDifference()
     {
-        float nextDamageValue = gameManager.damageValue * upgradeScaleValue;
+        float nextDamageValue = gameManager.damageValue * damageScaleValue;
         float damageDifference = nextDamageValue - gameManager.damageValue;
         float damageRounded = Mathf.Round(damageDifference * 100f) / 100f;
 

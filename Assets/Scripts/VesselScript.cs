@@ -8,7 +8,7 @@ public class VesselScript : MonoBehaviour
     [Header("Projectile Settings")]
     public GameObject[] projectile;
     public int currentProjectile;
-    public float fireRate;
+    public float baseFireRate;
 
     [Header("Angle Calculation")]
     public float opposite;
@@ -21,7 +21,12 @@ public class VesselScript : MonoBehaviour
     public GameObject target = null;
 
     private float _timer = 0f;
+    /*
+     pentru projectile[0] avem baseFireRate - gameManager.fireRate * basciBullet.fireRateMultiplier
+    pentru projectile[1] avem baseFireRate - gameManager.fireRate * 
+    ar trebui sa avem arme diferite?
 
+     */
     public void Update()
     {
         _timer += Time.deltaTime;
@@ -36,7 +41,7 @@ public class VesselScript : MonoBehaviour
             CalculateAngle();
         }
 
-        if(_timer > fireRate && target != null)
+        if(_timer > baseFireRate && target != null)
         {
             _timer = 0f;
 

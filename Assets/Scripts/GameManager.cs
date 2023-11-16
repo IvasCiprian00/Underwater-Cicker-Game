@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Upgrade Info")]
     public float damageValue;
-    public float fireRateUpgrade;
+    public float fireRate;
 
     [Header("Level Settings")]
     public int levelNumber;

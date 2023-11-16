@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 5423413217165606843}
   - component: {fileID: 8853910860507020964}
   - component: {fileID: -4697792745021880605}
-  - component: {fileID: 8014457641486443399}
+  - component: {fileID: 8462399955869995230}
+  - component: {fileID: -3205811521668558281}
   m_Layer: 0
   m_Name: Fish_2
   m_TagString: Fish
@@ -166,7 +167,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &8014457641486443399
+--- !u!114 &8462399955869995230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9166628770490663163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d73c1c15cc44654f8241ca921474128, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  speed: 0
+  damage: 1
+  hp: 2
+--- !u!114 &-3205811521668558281
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -178,6 +195,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff2771ad17b65fa4eb89c796119117b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 0
-  _damage: 0
-  _hp: 0
+  fish: {fileID: 8462399955869995230}
