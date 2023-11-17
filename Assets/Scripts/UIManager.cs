@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,8 @@ public class UIManager: MonoBehaviour
 {
     public GameManager gameManager;
     public TextMeshProUGUI shipHp;
+    public GameObject[] menus;
+    private int activeMenu = -1;
 
     [Header("Level Info")]
     public TextMeshProUGUI depth;
@@ -28,9 +31,29 @@ public class UIManager: MonoBehaviour
 
         damageUpgrade.text = "Damage\n +" + CalculateUpgradeDifference(gameManager.damageValue, damageScaleValue);
         fireRateUpgrade.text = "Fire Rate\n +" + fireRateScaleValue;
-        hpUpgrade.text = "HP\n +" + CalculateUpgradeDifference(gameManager.shipHp, hpScaleValue);
+        hpUpgrade.text = "HP\n +" + CalculateUpgradeDifference(gameManager.shipMaxHp, hpScaleValue);
 
         shipHp.text = gameManager.shipHp + "/" + gameManager.shipMaxHp;
+    }
+
+    public void ClickMenu(int menuNumber)
+    {
+        if(activeMenu == menuNumber)
+        {
+            menus[menuNumber].SetActive(false);
+            activeMenu = -1;
+            return;
+        }
+
+        if(activeMenu == -1)
+        {
+            menus[menuNumber].SetActive(true);
+            activeMenu = menuNumber;
+            return;
+        }
+        menus[activeMenu].SetActive(false);
+        menus[menuNumber].SetActive(true);
+        activeMenu = menuNumber;
     }
 
     public void UpgradeDamage()
