@@ -7,10 +7,17 @@ using UnityEngine.UI;
 
 public class UIManager: MonoBehaviour
 {
+
     public GameManager gameManager;
+    public VesselScript vesselScript;
     public TextMeshProUGUI shipHp;
     public GameObject[] menus;
     private int activeMenu = -1;
+
+    [Header("Weapon Slots")]
+    public GameObject[] weaponSlots;
+    public bool[] slotIsFree;
+    public GameObject selectedWeapon;
 
     [Header("Level Info")]
     public TextMeshProUGUI depth;
@@ -36,9 +43,13 @@ public class UIManager: MonoBehaviour
         shipHp.text = gameManager.shipHp + "/" + gameManager.shipMaxHp;
     }
 
+    //Button Functions
+
     public void ClickMenu(int menuNumber)
     {
-        if(activeMenu == menuNumber)
+        CancelSelection();
+
+        if (activeMenu == menuNumber)
         {
             menus[menuNumber].SetActive(false);
             activeMenu = -1;
@@ -54,22 +65,90 @@ public class UIManager: MonoBehaviour
         menus[activeMenu].SetActive(false);
         menus[menuNumber].SetActive(true);
         activeMenu = menuNumber;
+
+    }
+
+    public void EquipWeapon(int slotNumber)
+    {
+        if(selectedWeapon == null)
+        {
+            return;
+        }
+
+        for(int i = 0; i < 4; i++)
+        {
+            if (vesselScript.weapons[i] != null)
+            {
+                if (selectedWeapon.name + "(Clone)" == vesselScript.weapons[i].name)
+                {
+                    Destroy(vesselScript.weapons[i]);
+                    slotIsFree[i] = true;
+                }
+            }
+        }
+
+        Vector3 weaponPosition = new Vector3(weaponSlots[slotNumber].transform.position.x, weaponSlots[slotNumber].transform.position.y, -1);
+        vesselScript.weapons[slotNumber] = Instantiate(selectedWeapon, weaponPosition, Quaternion.identity);
+
+        slotIsFree[slotNumber] = false;
+
+        CancelSelection();
+        
+    }
+
+    public void SelectWeapon(GameObject weapon)
+    {
+        for(int i = 0; i < 4; i++)
+        {
+            if (slotIsFree[i])
+            {
+                weaponSlots[i].SetActive(true);
+            }
+        }
+        weaponSlots[4].SetActive(true);
+
+        selectedWeapon = weapon;
+    }
+
+    public void CancelSelection()
+    {
+        if (selectedWeapon == null)
+        {
+            return;
+        }
+
+        selectedWeapon = null;
+
+        for(int i = 0; i < 4; i++) 
+        {
+            if (weaponSlots[i].activeSelf)
+            {
+                weaponSlots[i].SetActive(false);
+            }
+        }
+        weaponSlots[4].SetActive(false);
     }
 
     public void UpgradeDamage()
     {
         gameManager.damageValue *= damageScaleValue;
+
+        CancelSelection();
     }
 
     public void UpgradeFireRate()
     {
         gameManager.fireRate += fireRateScaleValue;
+
+        CancelSelection();
     }
 
     public void UpgradeHP()
     {
         gameManager.shipHp *= hpScaleValue;
         gameManager.shipMaxHp *= hpScaleValue;
+
+        CancelSelection();
     }
 
     public float CalculateUpgradeDifference(float x, float y)
