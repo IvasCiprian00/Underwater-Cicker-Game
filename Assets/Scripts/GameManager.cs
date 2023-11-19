@@ -6,13 +6,14 @@ using UnityEngine.UIElements;
 public class GameManager : MonoBehaviour
 {
     public GameObject[] fish;
-    public float shipHp;
-    public float shipMaxHp;
+    public int money;
 
     [Header("Upgrade Info")]
     public float damageValue;// damage formula : damageValue * damageMultiplier
     public float fireRate;//fire rate formula : baseFireRate - fireRate * fireRateMultiplier
-    
+    public float shipHp;
+    public float shipMaxHp;
+
 
     [Header("Level Settings")]
     public int levelNumber;
@@ -45,15 +46,15 @@ public class GameManager : MonoBehaviour
 
     public void WaveIsOver()
     {
-        if(waveNumber == 4)
+        /*if(waveNumber == 4)
         {
             levelNumber++;
             waveNumber = 1;
             StartCoroutine(SpawnWave());
             return;
-        }
-
-        waveNumber++;
+        }*/
+        levelNumber++;
+        //waveNumber++;
         StartCoroutine(SpawnWave());
     }
 
