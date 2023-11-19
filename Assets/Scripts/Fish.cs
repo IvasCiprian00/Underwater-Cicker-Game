@@ -13,6 +13,7 @@ public class Fish : MonoBehaviour
     public float speed;
     public float damage;
     public float hp;
+    public float killRewardMultiplier;
 
     void Awake()
     {
@@ -30,6 +31,8 @@ public class Fish : MonoBehaviour
         if (GetHP() <= 0)
         {
             Destroy(gameObject);
+
+            gameManager.KillFish(killRewardMultiplier);
         }
     }
 

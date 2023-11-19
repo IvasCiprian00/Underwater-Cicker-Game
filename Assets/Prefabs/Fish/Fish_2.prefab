@@ -183,6 +183,7 @@ MonoBehaviour:
   speed: 0
   damage: 1
   hp: 2
+  killRewardMultiplier: 0.5
 --- !u!114 &-3205811521668558281
 MonoBehaviour:
   m_ObjectHideFlags: 0

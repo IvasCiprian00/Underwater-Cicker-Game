@@ -20,7 +20,6 @@ public class UIManager: MonoBehaviour
 
     [Header("Level Info")]
     public TextMeshProUGUI depth;
-    public TextMeshProUGUI wave;
 
     [Header("Upgrades")]
     public TextMeshProUGUI damageUpgrade;
@@ -32,7 +31,14 @@ public class UIManager: MonoBehaviour
 
     [Header("Upgrade Costs")]
     public TextMeshProUGUI money;
+    public TextMeshProUGUI damageCostText;
+    public TextMeshProUGUI fireRateCostText;
+    public TextMeshProUGUI hpCostText;
     public float upgradeCostScale;
+
+    public int damageCost;
+    public int fireRateCost;
+    public int hpCost;
 
     [Header("Upgrade Levels")]
     public int damageLevel;
@@ -58,23 +64,37 @@ public class UIManager: MonoBehaviour
 
     public void Update()
     {
+        SetText();
+
+        ButtonCostCheck();
+    }
+
+    private void SetText()
+    {
         depth.text = "Depth: " + gameManager.levelNumber + " m";
-        wave.text = "Wave " + gameManager.waveNumber + "/4";
+        money.text = gameManager.money + "";
 
         damageUpgrade.text = "Damage\n +" + CalculateUpgradeDifference(gameManager.damageValue, damageScaleValue);
         fireRateUpgrade.text = "Fire Rate\n +" + fireRateScaleValue;
         hpUpgrade.text = "HP\n +" + CalculateUpgradeDifference(gameManager.shipMaxHp, hpScaleValue);
 
-        CheckUpgradeCost(damageLevel, damageImage, damageButton, damageUpgrade);
-        CheckUpgradeCost(fireRateLevel, fireRateImage, fireRateButton, fireRateUpgrade);
-        CheckUpgradeCost(hpLevel, hpImage, hpButton, hpUpgrade);
+        damageCostText.text = damageCost + "";
+        fireRateCostText.text = fireRateCost + "";
+        hpCostText.text = hpCost + "";
+    }
+
+    private void ButtonCostCheck()
+    {
+        CheckUpgradeCost(damageCost, damageImage, damageButton, damageUpgrade);
+        CheckUpgradeCost(fireRateCost, fireRateImage, fireRateButton, fireRateUpgrade);
+        CheckUpgradeCost(hpCost, hpImage, hpButton, hpUpgrade);
     }
 
     //Button  related Functions
 
-    public void CheckUpgradeCost(int upgradeLevel, Image buttonImage, Button button, TextMeshProUGUI buttonText)
+    public void CheckUpgradeCost(int upgradeCost, Image buttonImage, Button button, TextMeshProUGUI buttonText)
     {
-        if(100 + Mathf.Pow(upgradeLevel, upgradeCostScale) > gameManager.money)
+        if(upgradeCost > gameManager.money)
         {
             button.enabled = false;
             buttonImage.color = Color.gray;
@@ -175,7 +195,9 @@ public class UIManager: MonoBehaviour
     public void UpgradeDamage()
     {
         gameManager.damageValue *= damageScaleValue;
-        damageLevel++;
+
+        UpdateMoney(damageCost);
+        UpdateCost(ref damageCost, ref damageLevel);
 
         CancelSelection();
     }
@@ -183,7 +205,9 @@ public class UIManager: MonoBehaviour
     public void UpgradeFireRate()
     {
         gameManager.fireRate += fireRateScaleValue;
-        fireRateLevel++;
+
+        UpdateMoney(fireRateCost);
+        UpdateCost(ref fireRateCost, ref fireRateLevel);
 
         CancelSelection();
     }
@@ -192,9 +216,22 @@ public class UIManager: MonoBehaviour
     {
         gameManager.shipHp *= hpScaleValue;
         gameManager.shipMaxHp *= hpScaleValue;
-        hpLevel++;
+
+        UpdateMoney(hpCost);
+        UpdateCost(ref hpCost, ref hpLevel);
 
         CancelSelection();
+    }
+
+    public void UpdateMoney(int x)
+    {
+        gameManager.money -= x;
+    }
+
+    public void UpdateCost(ref int cost, ref int level)
+    {
+        cost += level + (int)(upgradeCostScale * cost);
+        level++;
     }
 
     public float CalculateUpgradeDifference(float x, float y)

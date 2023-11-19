@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public GameObject[] fish;
     public int money;
+    public float moneyScaleValue;
+    //money reward = levelNumber + fishRewardMultiplier * moneyScaleValue ^ levelNumber;
 
     [Header("Upgrade Info")]
     public float damageValue;// damage formula : damageValue * damageMultiplier
@@ -17,7 +19,6 @@ public class GameManager : MonoBehaviour
 
     [Header("Level Settings")]
     public int levelNumber;
-    public int waveNumber;
     public int numberOfFish;
     public GameObject[] fishList;
 
@@ -44,17 +45,18 @@ public class GameManager : MonoBehaviour
         yield return null;
     }
 
+    public void KillFish(float rewardMultiplier)
+    {
+        float levelMultiplier = Mathf.Pow(moneyScaleValue, levelNumber);
+
+        money += levelNumber + (int) (rewardMultiplier * levelMultiplier);
+    }
+
     public void WaveIsOver()
     {
-        /*if(waveNumber == 4)
-        {
-            levelNumber++;
-            waveNumber = 1;
-            StartCoroutine(SpawnWave());
-            return;
-        }*/
+
         levelNumber++;
-        //waveNumber++;
+
         StartCoroutine(SpawnWave());
     }
 
