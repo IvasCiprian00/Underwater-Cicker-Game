@@ -56,7 +56,7 @@ public class UIManager: MonoBehaviour
 
     public void Awake()
     {
-        Vector3 weaponPosition = new Vector3(weaponSlots[0].transform.position.x, weaponSlots[0].transform.position.y, -1);
+        Vector3 weaponPosition = new Vector3(weaponSlots[0].transform.position.x, weaponSlots[0].transform.position.y, -2);
         vesselScript.weapons[0] = Instantiate(selectedWeapon, weaponPosition, Quaternion.identity, GameObject.Find("Boat").transform);
 
         slotIsFree[0] = false;
@@ -150,7 +150,7 @@ public class UIManager: MonoBehaviour
             }
         }
 
-        Vector3 weaponPosition = new Vector3(weaponSlots[slotNumber].transform.position.x, weaponSlots[slotNumber].transform.position.y, -1);
+        Vector3 weaponPosition = new Vector3(weaponSlots[slotNumber].transform.position.x, weaponSlots[slotNumber].transform.position.y, -2);
         vesselScript.weapons[slotNumber] = Instantiate(selectedWeapon, weaponPosition, Quaternion.identity, GameObject.Find("Boat").transform);
 
         slotIsFree[slotNumber] = false;
