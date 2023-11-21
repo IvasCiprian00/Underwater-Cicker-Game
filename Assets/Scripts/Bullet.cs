@@ -9,7 +9,7 @@ public class Bullet : Projectile
         gameManager = GameObject.Find("Game_Manager").GetComponent<GameManager>();
         SetDamageMultiplier(1f);
         SetFireRateMultiplier(0.5f);
-        SetSpeed(10f);
+        SetSpeed(20f);
     }
 
     private void Update()

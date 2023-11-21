@@ -62,7 +62,7 @@ public class Weapon : MonoBehaviour
     private void CalculateAngle()
     {
         opposite = Mathf.Abs(target.transform.position.x - transform.position.x);
-        adjacent = transform.position.y + Mathf.Abs(target.transform.position.y);
+        adjacent = transform.position.y + -1 * target.transform.position.y;
         angle = Mathf.Atan(opposite / adjacent) * 180 / Mathf.PI;
         flipImage = target.transform.position.x > transform.position.x ? 0f : 180f;
     }
