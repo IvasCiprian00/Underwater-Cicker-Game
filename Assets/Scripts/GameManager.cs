@@ -6,6 +6,8 @@ using UnityEngine.UIElements;
 public class GameManager : MonoBehaviour
 {
     public GameObject[] fish;
+    public GameObject[] fishBosses;
+
     public int money;
     public float moneyScaleValue;
     //money reward = levelNumber + fishRewardMultiplier * moneyScaleValue ^ levelNumber;
@@ -35,14 +37,38 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < numberOfFish; i++)
         {
-            float xPosition = Random.Range(-3f, 3f);
-            float angle = Mathf.Atan(7 / Mathf.Abs(xPosition)) * 180 / Mathf.PI;
-            int flipImage = xPosition > 0 ? 180 : 0;
+            float xPosition = 0f;
+            float angle = 0f;
+            int flipImage = 0;
+
+            CalculateTransform(ref xPosition, ref angle, ref flipImage);
 
             fishList[i] = Instantiate(fish[Random.Range(0, fish.Length)], new Vector3(xPosition, -6f, -1), Quaternion.Euler(0, flipImage, angle));
         }
 
         yield return null;
+    }
+
+    IEnumerator SpawnBoss()
+    {
+        fishList = new GameObject[1];
+
+        float xPosition = 0f;
+        float angle = 0f;
+        int flipImage = 0;
+
+        CalculateTransform(ref xPosition, ref angle, ref flipImage);
+
+        fishList[0] = Instantiate(fishBosses[0], new Vector3(xPosition, -6f, -1), Quaternion.Euler(0, flipImage, angle));
+
+        yield return null;
+    }
+
+    public void CalculateTransform(ref float x, ref float y, ref int z)
+    {
+        x = Random.Range(-3f, 3f);
+        y = Mathf.Atan(7 / Mathf.Abs(x)) * 180 / Mathf.PI;
+        z = x > 0 ? 180 : 0;
     }
 
     public void KillFish(float rewardMultiplier)
@@ -56,6 +82,11 @@ public class GameManager : MonoBehaviour
     {
 
         levelNumber++;
+        if(levelNumber % 10 == 0)
+        {
+            StartCoroutine(SpawnBoss());
+            return;
+        }
 
         StartCoroutine(SpawnWave());
     }

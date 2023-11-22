@@ -15,4 +15,13 @@ public class BasicFishMovement : MonoBehaviour
     {
         fish.Movement();
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Boat")
+        {
+            Destroy(gameObject);
+            fish.gameManager.DamageShip(fish.damage);
+        }
+    }
 }

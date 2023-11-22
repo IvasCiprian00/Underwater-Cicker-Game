@@ -84,6 +84,7 @@ public class Weapon : MonoBehaviour
             }
         }
 
+
         if (target != null)
         {
             target.tag = "Target";

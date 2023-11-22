@@ -46,14 +46,7 @@ public class Fish : MonoBehaviour
         transform.Translate(Vector3.right * this.speed * Time.deltaTime);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Boat")
-        {
-            Destroy(gameObject);
-            gameManager.DamageShip(damage);
-        }
-    }
+    
 
     //  Basic class methods
 
