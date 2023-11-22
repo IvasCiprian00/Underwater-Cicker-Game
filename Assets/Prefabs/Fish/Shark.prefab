@@ -192,7 +192,7 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   speed: 0
   damage: 5
-  hp: 100
+  hp: 30
   killRewardMultiplier: 20
 --- !u!114 &9150888826167417554
 MonoBehaviour:
