@@ -69,10 +69,33 @@ public class Weapon : MonoBehaviour
 
     IEnumerator SetTarget()
     {
+        GameObject backupTarget = null;
+
+        /*for (int i = 0; i < gameManager.fishList.Length; i++)
+        {
+            if (gameManager.fishList[i] != null)
+            {
+                if (target == null)
+                {
+                    target = gameManager.fishList[i];
+                }
+                else if (target.transform.position.y < gameManager.fishList[i].transform.position.y)
+                {
+                    target = gameManager.fishList[i];
+                }
+            }
+        }*/
+
         for (int i = 0; i < gameManager.fishList.Length; i++)
         {
             if (gameManager.fishList[i] != null)
             {
+                if (gameManager.fishList[i].tag == "Target")
+                {
+                    backupTarget = gameManager.fishList[i];
+                    continue;
+                }
+
                 if (target == null)
                 {
                     target = gameManager.fishList[i];
@@ -87,6 +110,11 @@ public class Weapon : MonoBehaviour
 
         if (target != null)
         {
+            target.tag = "Target";
+        }
+        else if(backupTarget != null)
+        {
+            target = backupTarget;
             target.tag = "Target";
         }
         else

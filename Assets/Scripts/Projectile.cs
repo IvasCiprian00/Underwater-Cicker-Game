@@ -11,7 +11,6 @@ public class Projectile : MonoBehaviour
     [Header("Weapon Attributes")]
     public float bulletSpeed;
     public float damageMultiplier;
-    public float fireRateMultiplier;
 
     public void Movement()
     {
@@ -36,11 +35,6 @@ public class Projectile : MonoBehaviour
     public float GetDamageMultiplier()
     {
         return damageMultiplier;
-    }
-
-    public void SetFireRateMultiplier(float fireRate)
-    {
-        fireRateMultiplier = fireRate;
     }
 
     public void SetSpeed(float speed)

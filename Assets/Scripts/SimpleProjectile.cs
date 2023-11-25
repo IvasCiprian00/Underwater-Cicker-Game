@@ -2,14 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : Projectile
+public class SimpleProjectile: Projectile
 {
     private void Awake()
     {
         gameManager = GameObject.Find("Game_Manager").GetComponent<GameManager>();
-        SetDamageMultiplier(1f);
-        SetFireRateMultiplier(0.5f);
-        SetSpeed(20f);
     }
 
     private void Update()
