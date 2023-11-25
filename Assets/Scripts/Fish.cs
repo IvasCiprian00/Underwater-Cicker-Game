@@ -46,7 +46,6 @@ public class Fish : MonoBehaviour
         transform.Translate(Vector3.right * this.speed * Time.deltaTime);
     }
 
-    
 
     //  Basic class methods
 

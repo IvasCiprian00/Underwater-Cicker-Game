@@ -71,21 +71,6 @@ public class Weapon : MonoBehaviour
     {
         GameObject backupTarget = null;
 
-        /*for (int i = 0; i < gameManager.fishList.Length; i++)
-        {
-            if (gameManager.fishList[i] != null)
-            {
-                if (target == null)
-                {
-                    target = gameManager.fishList[i];
-                }
-                else if (target.transform.position.y < gameManager.fishList[i].transform.position.y)
-                {
-                    target = gameManager.fishList[i];
-                }
-            }
-        }*/
-
         for (int i = 0; i < gameManager.fishList.Length; i++)
         {
             if (gameManager.fishList[i] != null)

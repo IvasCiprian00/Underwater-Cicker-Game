@@ -7,20 +7,10 @@ public class BasicFishMovement : MonoBehaviour
 {
     public Fish fish;
 
-    enum State
-    {
-        moving,
-        charging,
-        attacking
-    }
-
-    private State state;
-
     private void Awake()
     {
         fish.SetSpeed(Random.Range(0.9f, 1.1f));
         
-        state = State.moving;
     }
 
     private void Update()
@@ -33,7 +23,6 @@ public class BasicFishMovement : MonoBehaviour
     {
         if (collision.tag == "Boat")
         {
-            state = State.charging;
 
             fish.speed = -0.5f;
 
@@ -45,7 +34,6 @@ public class BasicFishMovement : MonoBehaviour
     {
         if(collision.tag == "Boat")
         {
-            state = State.attacking;
 
             StartCoroutine(ChargeAttack());
         }

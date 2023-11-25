@@ -12,6 +12,12 @@ public class Projectile : MonoBehaviour
     public float bulletSpeed;
     public float damageMultiplier;
 
+    private void Awake()
+    {
+        gameManager = GameObject.Find("Game_Manager").GetComponent<GameManager>();
+    }
+
+
     public void Movement()
     {
         transform.Translate(Vector3.down * bulletSpeed * Time.deltaTime);
