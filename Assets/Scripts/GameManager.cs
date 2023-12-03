@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -7,6 +8,8 @@ public class GameManager : MonoBehaviour
 {
     public GameObject[] fish;
     public GameObject[] fishBosses;
+
+    public TextMeshProUGUI damageNumber;
 
     public int money;
     public float moneyScaleValue;
@@ -67,7 +70,7 @@ public class GameManager : MonoBehaviour
     public void CalculateTransform(ref float x, ref float y, ref int z)
     {
         x = Random.Range(-3f, 3f);
-        y = Mathf.Atan(7 / Mathf.Abs(x)) * 180 / Mathf.PI;
+        y = Mathf.Atan(9 / Mathf.Abs(x)) * 180 / Mathf.PI;
         z = x > 0 ? 180 : 0;
     }
 
@@ -95,4 +98,12 @@ public class GameManager : MonoBehaviour
     {
         shipHp -= damage;
     }
+
+    public void DisplayDamage(float damage, Vector3 damagePosition)
+    {
+        Instantiate(damageNumber, damagePosition, Quaternion.identity, GameObject.Find("DamageNumbersContainer").transform);
+
+        damageNumber.text = (int) damage + "";
+    }
+
 }

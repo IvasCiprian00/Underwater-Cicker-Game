@@ -1788,6 +1788,41 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1580992696}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &776429897
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 776429898}
+  m_Layer: 5
+  m_Name: DamageNumbersContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &776429898
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 776429897}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1525282322}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &797314830
 GameObject:
   m_ObjectHideFlags: 0
@@ -1866,7 +1901,7 @@ Transform:
   m_GameObject: {fileID: 797314830}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.072, y: -0.482, z: 0}
+  m_LocalPosition: {x: 1.072, y: -0.482, z: -1}
   m_LocalScale: {x: 2.0282416, y: 2.0282416, z: 2.0282416}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3215,7 +3250,7 @@ Transform:
   m_GameObject: {fileID: 1300261946}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.339, y: -0.23300004, z: 0}
+  m_LocalPosition: {x: 2.339, y: -0.23300004, z: -1}
   m_LocalScale: {x: 2.0282416, y: 2.0282416, z: 2.0282416}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3896,6 +3931,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 776429898}
   - {fileID: 822817614}
   - {fileID: 352069014}
   - {fileID: 838146811}
@@ -5224,8 +5260,10 @@ MonoBehaviour:
   fish:
   - {fileID: 6191219097649879554, guid: 21dd61f31a9998a448823f0a54ee25d0, type: 3}
   - {fileID: 9166628770490663163, guid: fea6a2b317fe89b41a3cae16305586cd, type: 3}
+  - {fileID: 3033237744803069895, guid: 8a6a81f45d7b61141b5a40b91b54e253, type: 3}
   fishBosses:
   - {fileID: 4485464494134477905, guid: 47ebda16abc05fd438afb3fe0274d599, type: 3}
+  damageNumber: {fileID: 928285595096391172, guid: b7d4996b664a41849a54add5b47f013a, type: 3}
   money: 200
   moneyScaleValue: 1.15
   damageValue: 1

@@ -16,8 +16,11 @@ public class SimpleProjectile: Projectile
 
         if (collision.tag == "Target")
         {
+            float damageTaken = damageMultiplier * gameManager.damageValue;
             fish = collision.GetComponent<Fish>();
-            fish.TakeDamage(damageMultiplier * gameManager.damageValue);
+            fish.TakeDamage(damageTaken);
+
+            gameManager.DisplayDamage(damageTaken, fish.transform.position);
 
             Destroy(gameObject);
         }
